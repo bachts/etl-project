@@ -5,10 +5,10 @@ import requests
 
 
 #params for the call
-key = 'ZZYZO7P5AHO0M0N4'
+key = 'IF95HIZNQ2N5GDFJ'
 function = 'TIME_SERIES_INTRADAY' #type of timeseries
 symbols = ['MSFT', 'GOOG', 'AMZN', 'AAPL', 'META'] #stock symbol
-interval = '15min' #interval between two data points
+interval = '60min' #interval between two data points
 
 raw_data = []
 

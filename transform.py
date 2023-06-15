@@ -23,9 +23,8 @@ hourly_csv = os.listdir('./raw_data/hourly_data')
 
 for file in daily_csv:
     daily_df[f'{file.split(".")[0]}'] = pd.read_csv(f'./raw_data/daily_data/{file}')
-    #print(df[-1].head(10))
 for file in hourly_csv:
-    hourly_df[f'{file.split(".")[0]}'] = pd.read_csv(f'./raw_data/daily_data/{file}')
+    hourly_df[f'{file.split(".")[0]}'] = pd.read_csv(f'./raw_data/hourly_data/{file}')
 
 
 #Modify the dataframes
@@ -46,6 +45,7 @@ for key, df in hourly_df.items():
     df = df.reset_index()
     df = df.sort_values('index')
     df = df.rename(columns={'index': 'datetime'})
+    df = df.fillna('None')
     hourly_df[key] = df
 for key, df in daily_df.items():
     mavg = moving_average(df)
@@ -54,6 +54,7 @@ for key, df in daily_df.items():
     df['ret_dev'] = ret_dev
     df = df.reset_index(drop=True)
     df = df.rename(columns={'index': 'datetime'})
+    df = df.fillna('None')
     daily_df[key] = df
 
 # save the dataframes
